@@ -1,4 +1,4 @@
-## Shim and Lees's 인공지능 연구소  
+## Shim and Lee's 인공지능 연구소  
 
 
 ## 콘다 사용법
