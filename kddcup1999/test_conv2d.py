@@ -10,7 +10,8 @@ import tensorflow as tf
 # import keras 
 from tensorflow.keras.layers import Dense, Dropout, Input, Flatten
 from tensorflow.keras import backend 
-from tensorflow.keras.layers import Conv1D, MaxPooling1D
+# from tensorflow.keras.layers import Conv1D, MaxPooling1D
+from tensorflow.keras.layers import Conv2D, MaxPooling2D
 from tensorflow.keras.models import Sequential
 
 from sklearn import metrics
@@ -33,35 +34,31 @@ x_test = pd.read_csv('./x_test.csv').to_numpy()
 print(f'load data ok x_train , {x_test.shape}')
 y_test = pd.read_csv('./y_test.csv').to_numpy()
 print(f'load data ok y_train , {y_test.shape}')
+#%%
+x_train.shape
 # %%
 
-_X_train = np.expand_dims(x_train,axis=2)
-
+# _X_train = np.expand_dims(x_train,axis=2)
+_X_train = np.reshape(x_train,(330994,15,2))
+_X_train = np.expand_dims(_X_train,axis=3)
 #%%
 _X_train.shape
+#%%
 
 # %%
-
-# model = Sequential()
-# model.add(Conv1D(filters=64,kernel_size=2,activation='relu',input_shape=(30,1)))
-# model.add(MaxPooling1D(pool_size=2))
-# model.add(Flatten())
-# model.add(Dense(50,activation='relu'))
-# model.add(Dense(1))
-
 model = Sequential()
-model.add(Conv1D(filters=32,kernel_size=2,activation='relu', input_shape=(30,1)))
-model.add(MaxPooling1D(pool_size=2))
-model.add(Conv1D(filters=32,kernel_size=3,activation='relu'))
-model.add(MaxPooling1D(pool_size=1))   
+model.add(Conv2D(32,(3,3),padding='same',activation='relu',input_shape=(6,5,1)))
+model.add(MaxPooling2D(pool_size=(2,2)))
+model.add(Conv2D(64,(2,2),padding='same',activation='relu'))
+model.add(MaxPooling2D(pool_size=(2,2)))
 model.add(Flatten())
-model.add(Dense(8, activation='relu'))
-model.add(Dense(1))
+model.add(Dense(8,activation='relu'))
+model.add(Dense(3,activation='softmax'))
+model.summary()
 
 model.compile(optimizer='adam', loss=tf.keras.losses.mse, metrics=['acc'])
 print('compile ok')
-#%%
-model.summary()
+
 # %%
 model.fit(_X_train,y_train,epochs=1000,verbose=1)
 # %%
