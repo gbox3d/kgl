@@ -60,5 +60,31 @@ model.compile(optimizer='adam', loss=tf.keras.losses.sparse_categorical_crossent
 print('compile ok')
 
 # %%
-model.fit(_X_train,y_train,epochs=1000,verbose=1)
+model.fit(_X_train,y_train,epochs=5,verbose=1)
+# %%
+from sklearn.metrics import confusion_matrix
+from sklearn.metrics import accuracy_score
+
+#%%
+
+_x_test = np.reshape(x_test,(163027,5,6))
+_x_test = np.expand_dims(_x_test,axis=3)
+
+#%%
+y_pred = model.predict(_x_test)
+
+#%%
+y_pred[0].argmax()
+_y_pred = [_v.argmax()  for _v in y_pred ]
+
+_y_pred
+
+# %%
+accuracy_score(y_test,_y_pred)
+# %%
+cm = np.array(confusion_matrix(y_test, _y_pred, labels=[4,3,2,1,0]))
+# %%
+sns.heatmap(cm,annot=True)
+# %%
+cm
 # %%
