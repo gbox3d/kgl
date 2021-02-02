@@ -56,12 +56,12 @@ model.add(Conv1D(filters=32,kernel_size=3,activation='relu'))
 model.add(MaxPooling1D(pool_size=1))   
 model.add(Flatten())
 model.add(Dense(8, activation='relu'))
-model.add(Dense(1))
-
-model.compile(optimizer='adam', loss=tf.keras.losses.mse, metrics=['acc'])
+model.add(Dense(5))
+model.compile(loss =tf.keras.losses.sparse_categorical_crossentropy,optimizer = 'adam',metrics = ['accuracy'])
+# model.compile(optimizer='adam', loss=tf.keras.losses.mse, metrics=['acc'])
 print('compile ok')
 #%%
 model.summary()
 # %%
-model.fit(_X_train,y_train,epochs=1000,verbose=1)
+model.fit(_X_train,y_train,epochs=1,verbose=1)
 # %%

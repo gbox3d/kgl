@@ -122,7 +122,7 @@ _X = sc.fit_transform(df_X)
 
 #%%
 _df_y = df_y['Attack Type'].map({'normal':0, 'u2r':1, 'dos':2, 'r2l':3, 'probe':4})
-
+# _df_y = df_y
 # %%데이터 분할
 X_train, X_test, Y_train, Y_test = train_test_split(_X, _df_y, test_size=0.33, random_state=42)
 print(X_train.shape, X_test.shape)
