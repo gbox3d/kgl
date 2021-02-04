@@ -37,14 +37,11 @@ print(f'load data ok y_train , {y_test.shape}')
 #%%
 x_train.shape
 # %%
-
 # _X_train = np.expand_dims(x_train,axis=2)
 _X_train = np.reshape(x_train,(330994,5,6))
 _X_train = np.expand_dims(_X_train,axis=3)
 #%%
 _X_train.shape
-#%%
-
 # %%
 model = Sequential()
 model.add(Conv2D(32,(3,3),padding='same',activation='relu',input_shape=(5,6,1)))
