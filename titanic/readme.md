@@ -1,2 +1,0 @@
-- data_review.py : 데이터 전처리 
-- lenet_test.py : lenet 학습과 평가 
