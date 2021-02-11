@@ -35,10 +35,10 @@ print(f'load data ok x_train , {x_test.shape}')
 y_test = pd.read_csv('./y_test.csv').to_numpy()
 print(f'load data ok y_train , {y_test.shape}')
 #%%
-x_train.shape
+x_train.shape[0]
 # %%
 # _X_train = np.expand_dims(x_train,axis=2)
-_X_train = np.reshape(x_train,(330994,5,6))
+_X_train = np.reshape(x_train,(x_train.shape[0],5,6))
 _X_train = np.expand_dims(_X_train,axis=3)
 #%%
 _X_train.shape
