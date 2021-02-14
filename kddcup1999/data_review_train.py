@@ -130,17 +130,14 @@ for col in df_X :
 # %%
 sc = MinMaxScaler()
 _X = sc.fit_transform(df_X)
-
-
 #%%
 _df_y = df_y['Attack Type'].map({'normal':0, 'u2r':1, 'dos':2, 'r2l':3, 'probe':4})
 X_train = _X
 Y_train = _df_y
-
+print(X_train.shape)
+print(Y_train.shape)
 #%% save
 pd.DataFrame(X_train).to_csv('x_train.csv',index=False)
 Y_train.to_csv('y_train.csv',index=False)
-
 print('save ok')
-
 # %%
