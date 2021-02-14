@@ -19,6 +19,7 @@ from tensorflow.keras.wrappers.scikit_learn import KerasClassifier
 
 from sklearn import metrics
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
 
 
 print("버전: ", tf.__version__)
@@ -61,6 +62,7 @@ print(Y_val.shape)
 
 # %%
 def create_ann():
+
     model = Sequential()
 
     # here 30 is output dimension
@@ -86,7 +88,7 @@ def create_ann():
 # Once we are done with one batch it is flushed from memory and the next batch will be processed.
 
 
-model = KerasClassifier(build_fn=create_ann,epochs=100,batch_size=64) # 100 -> 10
+model = KerasClassifier(build_fn=create_ann,epochs=5,batch_size=64) # 100 -> 10
 # model = create_ann()
 
 # %%
@@ -97,4 +99,10 @@ model.fit(X_train, Y_train,
           )
 
 # %%
+y_pred = model.predict(x_test)
+
+#%%
+
 # accuracy_score(y_test, _y_pred)
+
+# %%

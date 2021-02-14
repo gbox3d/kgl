@@ -43,6 +43,7 @@ x_train.shape[0]
 # _X_train = np.expand_dims(x_train,axis=2)
 _X_train = np.reshape(x_train, (x_train.shape[0], 5, 6))
 _X_train = np.expand_dims(_X_train, axis=3)
+_X_train.shape
 # %%
 # _X_train.shape
 X_train, X_val, Y_train, Y_val = train_test_split(
